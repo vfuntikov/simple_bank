@@ -11,7 +11,7 @@ import (
 
 type createAccountRequest struct {
 	Owner    string `json:"owner" binding:"required"`
-	Currency string `json:"currency" binding:"required,oneof=USD EUR CAD"`
+	Currency string `json:"currency" binding:"required,currency"`
 }
 
 func (server *Server) createAccount(ctx *gin.Context) {
@@ -102,6 +102,10 @@ func (server *Server) deleteAccount(ctx *gin.Context) {
 	}
 
 	if err := server.store.DeleteAccount(ctx, req.ID); err != nil {
+		if err == pgx.ErrNoRows {
+			ctx.JSON(http.StatusNotFound, errorResponse(err))
+			return
+		}
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
@@ -117,9 +121,18 @@ type updateAccountRequest struct {
 func (server *Server) updateAccount(ctx *gin.Context) {
 	var req updateAccountRequest
 
-	// var id int64
 	accountID, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
+		ctx.JSON(http.StatusBadRequest, errorResponse(err))
+		return
+	}
+
+	account, err := server.store.GetAccount(ctx, int64(accountID))
+	if err != nil {
+		if err == pgx.ErrNoRows {
+			ctx.JSON(http.StatusNotFound, errorResponse(err))
+			return
+		}
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
@@ -130,7 +143,7 @@ func (server *Server) updateAccount(ctx *gin.Context) {
 	}
 
 	arg := db.UpdateAccountParams{
-		ID:      int64(accountID),
+		ID:      account.ID,
 		Balance: req.Balance,
 	}
 
