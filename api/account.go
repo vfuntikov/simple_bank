@@ -6,7 +6,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5"
-	"github.com/jackc/pgx/v5/pgconn"
 	db "github.com/vfuntikov/simple_bank/db/sqlc"
 )
 
@@ -31,12 +30,10 @@ func (server *Server) createAccount(ctx *gin.Context) {
 
 	account, err := server.store.CreateAccount(ctx, arg)
 	if err != nil {
-		if pqErr, ok := err.(*pgconn.PgError); ok {
-			switch pqErr.Code {
-			case "23503", "23505":
-				ctx.JSON(http.StatusForbidden, errorResponse(err))
-				return
-			}
+		errCode := db.ErrorCode(err)
+		if errCode == db.ForeignKeyViolation || errCode == db.UniqueViolation {
+			ctx.JSON(http.StatusForbidden, errorResponse(err))
+			return
 		}
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
