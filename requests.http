@@ -1,0 +1,77 @@
+
+@page_id = 10
+@page_size=5
+GET  http://localhost:8080/accounts?page_id={{page_id}}&page_size={{page_size}}
+
+
+DELETE http://localhost:8080/accounts/37
+
+
+GET http://localhost:8080/accounts/44
+
+
+PATCH  http://localhost:8080/accounts/45
+Content-Type: application/json
+{
+    "Balance": 250
+}
+
+
+POST http://localhost:8080/users
+Content-Type: application/json
+{
+    "username": "victor",
+    "password": "qwerty",
+    "full_name": "victor funtikov",
+    "email": "vfuntikov@gmail.com"
+}
+
+
+GET http://localhost:8080/users/victor
+
+GET http://localhost:8080/accounts/92
+
+
+POST http://localhost:8080/users/login
+Content-Type: application/json
+{
+    "username": "victor",
+    "password": "qwerty"
+}
+
+{{+
+  const token = "v2.local.GZlgZQJfAoEuMO7gZP6SmLsJZ-QnJlP1t5CJvlmSR5eE3X1MgDy--jbhRHKClw-bWi61e6M94_O88Z6iVG8nY4rg2kJ-kQdDoHWYuznuJLnc1eM-fykZ8i4CNYxLt0PmhZlXkri4fI7bHcW56DmMTxs62u4e5f9Fxht7FhQJVHQAqNk-Hm9vrfw-7chjNjHvzaZ0NrpSQy_iNt4wtO8u7ryOSbQFUPqyRsPrRJ1UTzo9oL0joNPmQ4M-uFU-YD9RL4yuMbY-bBAn68FM_mI.bnVsbA"
+  exports.defaultHeaders = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  };
+}}
+###
+@page_id = 1
+@page_size=5
+GET http://localhost:8080/accounts?page_id={{page_id}}&page_size={{page_size}}
+...defaultHeaders
+
+GET http://localhost:8080/accounts/19
+...defaultHeaders
+
+POST http://localhost:8080/transfers
+...defaultHeaders
+{
+    "from_account_id": 103,
+    "to_account_id": 88,
+    "amount": 10,
+    "currency": "USD"
+}
+
+POST  http://localhost:8080/accounts/
+...defaultHeaders
+{
+    "Currency": "EUR"
+}
+
+POST localhost:8080/tokens/renew_access
+Content-Type: application/json
+{
+    "refresh_token": "v2.local.GZlgZQJfAoEuMO7gZP6SmLsJZ-QnJlP1t5CJvlmSR5eE3X1MgDy--jbhRHKClw-bWi61e6M94_O88Z6iVG8nY4rg2kJ-kQdDoHWYuznuJLnc1eM-fykZ8i4CNYxLt0PmhZlXkri4fI7bHcW56DmMTxs62u4e5f9Fxht7FhQJVHQAqNk-Hm9vrfw-7chjNjHvzaZ0NrpSQy_iNt4wtO8u7ryOSbQFUPqyRsPrRJ1UTzo9oL0joNPmQ4M-uFU-YD9RL4yuMbY-bBAn68FM_mI.bnVsbA"
+}
