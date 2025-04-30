@@ -40,7 +40,7 @@ Content-Type: application/json
 }
 
 {{+
-  const token = "v2.local.GZlgZQJfAoEuMO7gZP6SmLsJZ-QnJlP1t5CJvlmSR5eE3X1MgDy--jbhRHKClw-bWi61e6M94_O88Z6iVG8nY4rg2kJ-kQdDoHWYuznuJLnc1eM-fykZ8i4CNYxLt0PmhZlXkri4fI7bHcW56DmMTxs62u4e5f9Fxht7FhQJVHQAqNk-Hm9vrfw-7chjNjHvzaZ0NrpSQy_iNt4wtO8u7ryOSbQFUPqyRsPrRJ1UTzo9oL0joNPmQ4M-uFU-YD9RL4yuMbY-bBAn68FM_mI.bnVsbA"
+  const token = "v2.local.amrmq3Di20eg0LG_zsIzTED-tnV9fvE2ovNu7ZfVvUE3pBbkKum9BoptNE0c_UghkauobFFHmOQeDzQ1pxq8XqEl26RPkjP3J7pliVKkvklkj0Dc_ydtp3go9pG0L5Usgg1XuyutkPCiLmdOGGIei0JVfiuvvJ38InLsTV9pevazpmSV7fPm95BhYWwQO310h15RapV6u-R7TcZvUjX5zWKROuYJbaXUGupthPhd7NoSbrwtbjNBqqVtnMDzW-GmoiVTYA.bnVsbA"
   exports.defaultHeaders = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`
@@ -52,7 +52,7 @@ Content-Type: application/json
 GET http://localhost:8080/accounts?page_id={{page_id}}&page_size={{page_size}}
 ...defaultHeaders
 
-GET http://localhost:8080/accounts/19
+GET http://localhost:8080/accounts/1
 ...defaultHeaders
 
 POST http://localhost:8080/transfers
@@ -70,8 +70,8 @@ POST  http://localhost:8080/accounts/
     "Currency": "EUR"
 }
 
-POST localhost:8080/tokens/renew_access
+POST http://localhost:8080/tokens/renew_access
 Content-Type: application/json
 {
-    "refresh_token": "v2.local.GZlgZQJfAoEuMO7gZP6SmLsJZ-QnJlP1t5CJvlmSR5eE3X1MgDy--jbhRHKClw-bWi61e6M94_O88Z6iVG8nY4rg2kJ-kQdDoHWYuznuJLnc1eM-fykZ8i4CNYxLt0PmhZlXkri4fI7bHcW56DmMTxs62u4e5f9Fxht7FhQJVHQAqNk-Hm9vrfw-7chjNjHvzaZ0NrpSQy_iNt4wtO8u7ryOSbQFUPqyRsPrRJ1UTzo9oL0joNPmQ4M-uFU-YD9RL4yuMbY-bBAn68FM_mI.bnVsbA"
+    "refresh_token": "v2.local.FSV8kUc0m2M_Su_vCISCXkvqR6ifhV27gMxzT7_PTKRVwlbBK9bI82nmnBeWXuLfv-fcNThELFcZt2J5m4w5x7n0hfa_-G7HndksnMawjX22P1yMGkEB7CHz3ln03ai4Uj1mFNngC6xPla41EFfkPEZjp9kJS3KP3nNJDB-szuxcrag9nYBRfV94T883vC61W70HxhO48Tls7c4bFBrT331PBJdBeuxXJGmP8IFqgwi8vbsh-_MaWk2PzKWuJxF33YJEWhXAsZ4IkTmdU64.bnVsbA"
 }
