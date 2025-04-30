@@ -24,6 +24,10 @@ func main() {
 		log.Fatal("cannot connect to database:", err)
 	}
 
+	if err = db.MigrateDB(config.MigrationURL, config.DBSource); err != nil {
+		log.Fatal("cannot migrate database:", err)
+	}
+
 	store := db.NewStore(conn)
 	server, err := api.NewServer(config, store)
 	if err != nil {
