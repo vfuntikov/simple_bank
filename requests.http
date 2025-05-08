@@ -75,3 +75,27 @@ Content-Type: application/json
 {
     "refresh_token": "v2.local.FSV8kUc0m2M_Su_vCISCXkvqR6ifhV27gMxzT7_PTKRVwlbBK9bI82nmnBeWXuLfv-fcNThELFcZt2J5m4w5x7n0hfa_-G7HndksnMawjX22P1yMGkEB7CHz3ln03ai4Uj1mFNngC6xPla41EFfkPEZjp9kJS3KP3nNJDB-szuxcrag9nYBRfV94T883vC61W70HxhO48Tls7c4bFBrT331PBJdBeuxXJGmP8IFqgwi8vbsh-_MaWk2PzKWuJxF33YJEWhXAsZ4IkTmdU64.bnVsbA"
 }
+
+
+POST http://localhost:8080/v1/create_user
+Content-Type: application/json
+{
+    "username": "alice112",
+    "password": "qwerty",
+    "full_name": "Victor Funtikov Alek",
+    "email": "alice112@gmail.com"
+}
+
+POST http://localhost:8080/v1/login_user
+Content-Type: application/json
+{
+    "username": "vic",
+    "password": "qwerty"
+}
+
+POST  http://localhost:8080/v1/update_user
+Content-Type: application/json
+{
+    "username": "alice11",
+    "password": "secret"
+}
