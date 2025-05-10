@@ -34,7 +34,7 @@ const file_service_simple_bank_proto_rawDesc = "" +
 	"\tLoginUser\x12\x14.pb.LoginUserRequest\x1a\x15.pb.LoginUserResponse\"i\x92AM\x12\n" +
 	"Login user\x1a?Use this API to login user and get access token & refresh token\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/login_user\x12\x84\x01\n" +
 	"\n" +
-	"UpdateUser\x12\x15.pb.UpdateUserRequest\x1a\x16.pb.UpdateUserResponse\"G\x92A*\x12\vUpdate user\x1a\x1bUse this API to update user\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/update_userB\x81\x01\x92AY\x12W\n" +
+	"UpdateUser\x12\x15.pb.UpdateUserRequest\x1a\x16.pb.UpdateUserResponse\"G\x92A*\x12\vUpdate user\x1a\x1bUse this API to update user\x82\xd3\xe4\x93\x02\x14:\x01*2\x0f/v1/update_userB\x81\x01\x92AY\x12W\n" +
 	"\x0eSimpleBank API\"@\n" +
 	"\vTech School\x12\x1chttps://github.com/vfuntikov\x1a\x13vfuntikov@gmail.com2\x031.2Z#github.com/vfuntikov/simple_bank/pbb\x06proto3"
 

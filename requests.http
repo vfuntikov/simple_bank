@@ -40,7 +40,7 @@ Content-Type: application/json
 }
 
 {{+
-  const token = "v2.local.amrmq3Di20eg0LG_zsIzTED-tnV9fvE2ovNu7ZfVvUE3pBbkKum9BoptNE0c_UghkauobFFHmOQeDzQ1pxq8XqEl26RPkjP3J7pliVKkvklkj0Dc_ydtp3go9pG0L5Usgg1XuyutkPCiLmdOGGIei0JVfiuvvJ38InLsTV9pevazpmSV7fPm95BhYWwQO310h15RapV6u-R7TcZvUjX5zWKROuYJbaXUGupthPhd7NoSbrwtbjNBqqVtnMDzW-GmoiVTYA.bnVsbA"
+  const token = "v2.local.woSzvSY4WsXPv6bsA02Ja8IV-2YGkEyVsU8JNNT5ollYo7mv2B8vTtg9Sgf1Li1dKAotVOPN6qeRmWH1pV1rw1jopWqFcl627jNJdoMfdW_zterwXcHvbzot-eVmdyphAcPNDNVgxg8H7ZlJYstm6Wy66jw-5cehGlGIUE8-ZUmEVxe9Pt1tgyggWLBBdPec6PPeLf8V-18rs44cJOq34Yi878PXL1RwSkvgiDQ4McrJak0IuJCOkHF9c9aZGyNggs2jqFmmXdgk6jlrTgdZJF_m4n2fK10cm8OWwpyxbjDZRQ.bnVsbA"
   exports.defaultHeaders = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`
@@ -76,7 +76,6 @@ Content-Type: application/json
     "refresh_token": "v2.local.FSV8kUc0m2M_Su_vCISCXkvqR6ifhV27gMxzT7_PTKRVwlbBK9bI82nmnBeWXuLfv-fcNThELFcZt2J5m4w5x7n0hfa_-G7HndksnMawjX22P1yMGkEB7CHz3ln03ai4Uj1mFNngC6xPla41EFfkPEZjp9kJS3KP3nNJDB-szuxcrag9nYBRfV94T883vC61W70HxhO48Tls7c4bFBrT331PBJdBeuxXJGmP8IFqgwi8vbsh-_MaWk2PzKWuJxF33YJEWhXAsZ4IkTmdU64.bnVsbA"
 }
 
-
 POST http://localhost:8080/v1/create_user
 Content-Type: application/json
 {
@@ -89,13 +88,14 @@ Content-Type: application/json
 POST http://localhost:8080/v1/login_user
 Content-Type: application/json
 {
-    "username": "vic",
-    "password": "qwerty"
-}
-
-POST  http://localhost:8080/v1/update_user
-Content-Type: application/json
-{
     "username": "alice11",
     "password": "secret"
+}
+
+PATCH  http://localhost:8080/v1/update_user
+...defaultHeaders
+{
+    "username": "alice11",
+    "full_name": "Alice Funtikova",
+    "email": "alice@mail.com"
 }

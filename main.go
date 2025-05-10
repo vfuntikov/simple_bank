@@ -10,13 +10,14 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/rakyll/statik/fs"
 	db "github.com/vfuntikov/simple_bank/db/sqlc"
+	"github.com/vfuntikov/simple_bank/pb"
 
 	_ "github.com/vfuntikov/simple_bank/doc/statik"
 	"github.com/vfuntikov/simple_bank/gapi"
-	"github.com/vfuntikov/simple_bank/pb"
 	"github.com/vfuntikov/simple_bank/util"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+	"google.golang.org/protobuf/encoding/protojson"
 )
 
 func main() {
@@ -69,7 +70,19 @@ func runGatewayServer(config util.Config, store db.Store) {
 	if err != nil {
 		log.Fatal("cannot create server:", err)
 	}
-	grpcMux := runtime.NewServeMux()
+	grpcMux := runtime.NewServeMux(
+		runtime.WithMarshalerOption(runtime.MIMEWildcard, &runtime.HTTPBodyMarshaler{
+			Marshaler: &runtime.JSONPb{
+				MarshalOptions: protojson.MarshalOptions{
+					UseProtoNames:   true,
+					EmitUnpopulated: true,
+				},
+				UnmarshalOptions: protojson.UnmarshalOptions{
+					DiscardUnknown: true,
+				},
+			},
+		}),
+	)
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
